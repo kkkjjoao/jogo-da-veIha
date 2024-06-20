@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+body{
+    background-image: url(img/login.jpg);
+    background-size: 90%;
+    font-family: 'Press Start 2P', cursive;
+}
+
+
+
+.localInput{
+    width: 80vh;
+    height: 40vh;
+    margin: 20vh auto;
+    padding: 20px;
+    position: relative;
+    background-image: url(img/bginput.png);
+    background-size: 100%;
+}
+
+.localInput input{
+    width: 80%;
+    height: 15%;
+    margin: 2% 9%;
+    padding: 10px;
+    border: solid 1px;
+    border-radius: 150px;
+    font-size: 20px;
+    background-color: #B8FEFE;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.localInput img{
+    width: 35%;
+    height: auto;
+    text-decoration: none;
+    position: relative;
+    top: 20px;
+    left: 33%;
+}
+
+.logo{
+    width: 20%;
+    height: auto;
+    position: relative;
+    left: 5%;
+    top: 5%;
+}
