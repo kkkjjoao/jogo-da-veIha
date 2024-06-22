@@ -59,8 +59,14 @@ video {
     grid-template-columns: repeat(3, auto);
 }
 
+.container-jogo.x .celula:not(.x):not(.circle):hover::after,
+.container-jogo.x .celula:not(.x):not(.circle):hover::before,
+.container-jogo.circle .celula:not(.x):not(.circle):hover::after,
+.container-jogo.circle .celula:not(.x):not(.circle):hover::before  {
+    background: rgba(114, 196, 125, 0.3) !important;
+}
 
-
+/* Célula */
 .celula {
     width: 100px;
     height: 100px;
@@ -68,6 +74,12 @@ video {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.celula.x,
+.celula.circle {
+    cursor: not-allowed;
 }
 
 .celula:nth-child(1),
@@ -89,4 +101,74 @@ video {
 .celula:nth-child(8),
 .celula:nth-child(9){
     border-bottom: none;
+}
+
+/* X */
+.celula.x::before,
+.celula.x::after,
+.container-jogo.x .celula:not(.x):not(.circle):hover::after,
+.container-jogo.x .celula:not(.x):not(.circle):hover::before {
+    content: "";
+    height: calc(100px * 0.15);
+    width: calc(100px * 0.9);
+    background: blueviolet;
+    position: absolute;
+}
+
+.celula.x::before,
+.container-jogo.x .celula:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+}
+
+.celula.x::after, 
+.container-jogo.x .celula:not(.x):not(.circle):hover::after{
+    transform: rotate(-45deg);
+}
+
+/* Circle */
+.celula.circle::before,
+.celula.circle::after,
+.container-jogo.circle .celula:not(.x):not(.circle):hover::after,
+.container-jogo.circle .celula:not(.x):not(.circle):hover::before  {
+    content: "";
+    height: calc(100px * 0.9);
+    width: calc(100px * 0.9);
+    background: blueviolet;
+    position: absolute;
+    border-radius: 50%;
+}
+
+/* Mensagem de vitória */
+.mensagem-vencer {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    flex-direction: column;
+}
+
+.botao-reiniciar {
+    font-size: 2.5rem;
+    background-color: blueviolet;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    margin-top: 16px;
+    color: white;
+}
+
+.botao-reiniciar:hover {
+    color: blueviolet;
+    background-color: white;
+}
+
+.mensagem-vencer-texto {
+    color: white;
+    font-size: 5rem;
 }
