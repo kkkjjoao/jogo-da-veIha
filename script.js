@@ -93,3 +93,47 @@ class Jogo {
 }
 
 const jogo = new Jogo();
+window.onload = function() {
+    const startButton = document.getElementById('startButton');
+    const inputs = document.querySelectorAll('#nomeJogador1, #nomeJogador2');
+
+    inputs.forEach(input => {
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); 
+                startButton.click();
+            }
+        });
+    });
+};
+function validarNomes() {
+    const nomeJogador1 = document.getElementById('nomeJogador1').value.trim();
+    const nomeJogador2 = document.getElementById('nomeJogador2').value.trim();
+    
+    if (nomeJogador1 === '' || nomeJogador2 === '') {
+        alert('Os nomes dos jogadores não podem estar vazios.');
+        return false;
+    }
+    
+    if (nomeJogador1.toLowerCase() === nomeJogador2.toLowerCase()) {
+        alert('Os nomes dos jogadores não podem ser iguais.');
+        return false;
+    }
+    
+    return true;
+}
+
+window.onload = function() {
+    console.log('Conteudo carregado');
+
+    const startButton = document.getElementById('startButton');
+    console.log('Botão Start:', startButton);
+
+    startButton.addEventListener('click', function(event) {
+        console.log('Botão Start clicado');
+        if (!validarNomes()) {
+            event.preventDefault();
+            console.log('Validação falhou');
+        }
+    });
+};
