@@ -89,16 +89,17 @@ class Jogador {
     jogo.inicializarJogo();
   };
 
-exitButton.addEventListener('click', function() {
-      confirmExitModal.style.display = 'block';
+botaosair.addEventListener('click', function() {
+      confirmasair.style.display = 'block';
   });
 
-  confirmExitButton.addEventListener('click', function() {
+  btnconfirmasair.addEventListener('click', function() {
       localStorage.clear();
-      confirmExitModal.style.display = 'none';
+      confirmasair.style.display = 'none';
       window.location.href = 'index.html';
   });
 
-  cancelExitButton.addEventListener('click', function() {
-      confirmExitModal.style.display = 'none';
+  botaocancelar.addEventListener('click', function() {
+      confirmasair.style.display = 'none';
   });
+
