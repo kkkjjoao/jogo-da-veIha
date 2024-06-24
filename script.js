@@ -88,3 +88,17 @@ class Jogador {
   window.onload = () => {
     jogo.inicializarJogo();
   };
+
+exitButton.addEventListener('click', function() {
+      confirmExitModal.style.display = 'block';
+  });
+
+  confirmExitButton.addEventListener('click', function() {
+      localStorage.clear();
+      confirmExitModal.style.display = 'none';
+      window.location.href = 'index.html';
+  });
+
+  cancelExitButton.addEventListener('click', function() {
+      confirmExitModal.style.display = 'none';
+  });
