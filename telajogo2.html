@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="telajogo2.css">
+</head>
+
+<body>
+<!-- 
+    <div class="container-logo">
+        <img src="img/logo.png" alt="Logo">
+    </div>
+
+    <div class="container-logo2">
+        <video src="mp4/Nick.mp4"></video>
+    </div> -->
+
+
+    <div id="game">
+        <div id="tabuleiro" style="display: grid; grid-template-columns: repeat(3, 100px); gap: 5px;">
+            <div class="celula" data-pos="0" onclick="jogo.jogadas.setaCelula(this, 0)"></div>
+            <div class="celula" data-pos="1" onclick="jogo.jogadas.setaCelula(this, 1)"></div>
+            <div class="celula" data-pos="2" onclick="jogo.jogadas.setaCelula(this, 2)"></div>
+            <div class="celula" data-pos="3" onclick="jogo.jogadas.setaCelula(this, 3)"></div>
+            <div class="celula" data-pos="4" onclick="jogo.jogadas.setaCelula(this, 4)"></div>
+            <div class="celula" data-pos="5" onclick="jogo.jogadas.setaCelula(this, 5)"></div>
+            <div class="celula" data-pos="6" onclick="jogo.jogadas.setaCelula(this, 6)"></div>
+            <div class="celula" data-pos="7" onclick="jogo.jogadas.setaCelula(this, 7)"></div>
+            <div class="celula" data-pos="8" onclick="jogo.jogadas.setaCelula(this, 8)"></div>
+        </div>
+        <div id="jogadorAtual"></div>
+    </div>
+
+    
+         <div class="mensagem-vencer" data-mensagem-vencer>
+        <p class="mensagem-vencer-texto">X Venceu</p>
+        <button class="botao-reiniciar">Reiniciar</button>
+    </div>
+    <div>
+        <input type="text" id="jogadorAtual" readonly>
+    </div>
+
+    <div class="ranking">
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
