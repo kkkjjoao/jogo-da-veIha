@@ -37,8 +37,10 @@ class Jogador {
         this.tabuleiro[jogada.linha][jogada.coluna] = jogada.jogador.simbolo;
         atualizarTabuleiro();
         if (this.verificarVencedor()) {
-          alert(`O jogador ${jogada.jogador.nome} venceu!`);
-          this.jogoAtivo = false;
+             setTimeout(() => {
+                  alert(`O jogador ${jogada.jogador.nome} venceu!`);
+                  this.jogoAtivo = false;
+              }, 100);
         } else {
           this.alternarJogador();
         }
