@@ -18,10 +18,15 @@
         <img src="img/Nick_1.png" alt="">
     </div>
 
-  <div id="tabuleiro"></div>
-  <button class="reiniciar" onclick="reiniciarJogo()">Reiniciar Jogo</button>
-    <button class="sair" id="botaosair">Sair</button>
+     <div id="cardJogo">
+        <div id="tabuleiro"></div>
+    </div>
 
+    <div class="mensagem-vitoria" data-mensagem-vitoria>
+        <p data-mensagem-texto>X Venceu!</p>
+        <button class="reiniciar" onclick="reiniciarJogo()">Reiniciar Jogo</button>
+    </div>
+    
     <div id="confirmasair" class="modal">
         <div class="modal-content">
             <p>Você realmente quer sair?</p>
