@@ -18,10 +18,11 @@ body {
     justify-content: center;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    width: 25%;
+#logo {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 22%;
     margin-top: 5%;
 }
 
@@ -51,12 +52,52 @@ img {
     cursor: pointer;
   }
 
+.celula:nth-child(1),
+.celula:nth-child(2),
+.celula:nth-child(3) {
+    border-top: none;
+}
+
+.celula:nth-child(1),
+.celula:nth-child(4),
+.celula:nth-child(7) {
+    border-left: none;
+}
+
+.celula:nth-child(3),
+.celula:nth-child(6),
+.celula:nth-child(9) {
+    border-right: none;
+}
+
+.celula:nth-child(7),
+.celula:nth-child(8),
+.celula:nth-child(9) {
+    border-bottom: none;
+}
+
   .reiniciar {
     display: flex;
-    justify-content: flex-end;
-    margin-right: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    border-radius: 18px;
+    padding: 15px 40px;
+    cursor: pointer;
+}
 
-  }
+.mensagem-vitoria {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(230, 47, 175, 0.8);
+    flex-direction: column;
+}
 
 .modal {
     display: none; /* Esconder por padrão */
