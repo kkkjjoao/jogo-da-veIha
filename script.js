@@ -30,24 +30,34 @@ class Jogador {
       this.jogadorAtual = this.jogador1;
       this.jogoAtivo = true;
       atualizarTabuleiro();
+      document.querySelector('[data-mensagem-vitoria]').style.display = 'none';
     }
 
     realizarJogada(jogada) {
-      if (this.tabuleiro[jogada.linha][jogada.coluna] === ' ' && this.jogoAtivo) {
-        this.tabuleiro[jogada.linha][jogada.coluna] = jogada.jogador.simbolo;
-        atualizarTabuleiro();
-        if (this.verificarVencedor()) {
-             setTimeout(() => {
-                  alert(`O jogador ${jogada.jogador.nome} venceu!`);
-                  this.jogoAtivo = false;
-              }, 100);
-        } else {
-          this.alternarJogador();
-        }
+    if (this.tabuleiro[jogada.linha][jogada.coluna] === ' ' && this.jogoAtivo) {
+      this.tabuleiro[jogada.linha][jogada.coluna] = jogada.jogador.simbolo;
+      atualizarTabuleiro();
+      if (this.verificarVencedor()) {
+        setTimeout(() => {
+          // alert(`O jogador ${jogada.jogador.nome} venceu!`);
+          document.querySelector('[data-mensagem-texto]').innerText = `O jogador ${jogada.jogador.nome} venceu!`;
+          document.querySelector('[data-mensagem-vitoria]').style.display = 'flex';
+          this.jogoAtivo = false;
+        }, 100);
+      } else if (this.verificarEmpate()) {
+        setTimeout(() => {
+          // alert("O jogo empatou!");
+          document.querySelector('[data-mensagem-texto]').innerText = "O jogo empatou!";
+          document.querySelector('[data-mensagem-vitoria]').style.display = 'flex';
+          this.jogoAtivo = false;
+        }, 100);
       } else {
-        alert("Jogada inválida!");
+        this.alternarJogador();
       }
+    } else {
+      alert("Jogada inválida!");
     }
+  }
 
     verificarVencedor() {
       const simbolo = this.jogadorAtual.simbolo;
@@ -59,6 +69,10 @@ class Jogador {
 
       return linhas || colunas || diagonais;
     }
+
+       verificarEmpate() {
+    return this.tabuleiro.every(linha => linha.every(celula => celula !== ' '));
+  }
 
     alternarJogador() {
       this.jogadorAtual = this.jogadorAtual === this.jogador1 ? this.jogador2 : this.jogador1;
