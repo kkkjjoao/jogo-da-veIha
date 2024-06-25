@@ -92,3 +92,24 @@ img {
     width: 50px;
     height: 50px;
 }
+
+@keyframes rainbowBlink {
+    0% { background-color: red; }
+    14% { background-color: orange; }
+    28% { background-color: yellow; }
+    42% { background-color: green; }
+    57% { background-color: blue; }
+    71% { background-color: indigo; }
+    85% { background-color: violet; }
+    100% { background-color: red; }
+}
+
+.reiniciar {
+    animation: rainbowBlink 2s infinite;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
