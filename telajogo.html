@@ -11,7 +11,7 @@
         <img src="img/seta-voltar-pixel.png" alt="voltar">
     </div>
     <div class="container-logo">
-        <img src="img/logo.png" alt="Logo">
+        <img id="logo" src="img/logo.png" alt="Logo">
     </div>
 
     <div class="container-logo2">
@@ -34,7 +34,51 @@
             <button id="botaocancelar">Não</button>
         </div>
     </div>
-  
+
+     <div id="ranking">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th id="nomeJogador1">Jogador 1</th>
+            <th id="nomeJogador2">Jogador 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Vitórias</td>
+            <td id="vitoriasJogador1">0</td>
+            <td id="vitoriasJogador2">0</td>
+          </tr>
+          <tr>
+            <td>Empates</td>
+            <td id="empatesJogador1">0</td>
+            <td id="empatesJogador2">0</td>
+          </tr>
+          <tr>
+            <td>Derrotas</td>
+            <td id="derrotasJogador1">0</td>
+            <td id="derrotasJogador2">0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="jogadores">
+      <table>
+        <tbody>
+          <tr>
+            <td id="nomeJogador1">Jogador 1</td>
+            <td>X</td>
+          </tr>
+          <tr>
+            <td id="nomeJogador2">Jogador 2</td>
+            <td>O</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
   <script src="script.js"></script>
 </body>
 </html>
