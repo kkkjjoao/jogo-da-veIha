@@ -2,6 +2,9 @@ class Jogador {
   constructor(nome, simbolo) {
     this.nome = nome;
     this.simbolo = simbolo;
+    this.vitorias = 0;
+    this.derrotas = 0;
+    this.empates = 0;
   }
 }
 
@@ -28,23 +31,32 @@ class Jogo {
     this.jogoAtivo = true;
     this.atualizarTabuleiro();
     document.querySelector('[data-mensagem-vitoria]').style.display = 'none';
+    atualizarRanking();
   }
 
-  realizarJogada(jogada) {
-    if (this.tabuleiro[jogada.linha][jogada.coluna] === ' ' && this.jogoAtivo) {
+ realizarJogada(jogada) {
+    if (this.tabuleiro[jogada.linha][jogada.coluna] === " " && this.jogoAtivo) {
       this.tabuleiro[jogada.linha][jogada.coluna] = jogada.jogador.simbolo;
       this.atualizarTabuleiro();
       if (this.verificarVencedor()) {
         setTimeout(() => {
-          document.querySelector('[data-mensagem-texto]').innerText = `O jogador ${jogada.jogador.nome} venceu!`;
-          document.querySelector('[data-mensagem-vitoria]').style.display = 'flex';
+          document.querySelector("[data-mensagem-texto]").innerText = `O jogador ${jogada.jogador.nome} venceu!`;
+          document.querySelector("[data-mensagem-vitoria]").style.display = "flex";
+          jogada.jogador.vitorias++;
+          this.alternarJogador();
+          this.jogadorAtual.derrotas++;
           this.jogoAtivo = false;
+          atualizarRanking();
         }, 100);
       } else if (this.verificarEmpate()) {
         setTimeout(() => {
-          document.querySelector('[data-mensagem-texto]').innerText = "O jogo empatou!";
-          document.querySelector('[data-mensagem-vitoria]').style.display = 'flex';
+          document.querySelector("[data-mensagem-texto]").innerText = "O jogo empatou!";
+          document.querySelector("[data-mensagem-vitoria]").style.display = "flex";
+          jogada.jogador.empates++;
+          this.alternarJogador();
+          this.jogadorAtual.empates++;
           this.jogoAtivo = false;
+          atualizarRanking();
         }, 100);
       } else {
         this.alternarJogador();
@@ -53,6 +65,7 @@ class Jogo {
       alert("Jogada inválida!");
     }
   }
+
 
   verificarVencedor() {
     const simbolo = this.jogadorAtual.simbolo;
@@ -82,7 +95,7 @@ class Jogo {
       linha.forEach((celula, j) => {
         const celulaDiv = document.createElement("div");
         celulaDiv.className = "celula";
-        celulaDiv.innerText = celula;
+        celulaDiv.innerText = celula; // Exibe o símbolo da célula
         celulaDiv.onclick = () => this.realizarJogada(new Jogada(this.jogadorAtual, i, j));
         tabuleiroDiv.appendChild(celulaDiv);
       });
@@ -94,6 +107,7 @@ let jogo;
 
 function reiniciarJogo() {
   jogo.inicializarJogo();
+  atualizarRanking();
 }
 
 window.onload = () => {
@@ -156,4 +170,18 @@ function validarNomes() {
   }
 
   return true;
+}
+
+function atualizarRanking() {
+  // Atualizar vitórias
+  document.getElementById("vitoriasJogador1").innerText = jogo.jogador1.vitorias;
+  document.getElementById("vitoriasJogador2").innerText = jogo.jogador2.vitorias;
+
+  // Atualizar empates
+  document.getElementById("empatesJogador1").innerText = jogo.jogador1.empates;
+  document.getElementById("empatesJogador2").innerText = jogo.jogador2.empates;
+
+  // Atualizar derrotas
+  document.getElementById("derrotasJogador1").innerText = jogo.jogador1.derrotas;
+  document.getElementById("derrotasJogador2").innerText = jogo.jogador2.derrotas;
 }
