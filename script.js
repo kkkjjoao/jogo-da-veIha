@@ -28,7 +28,6 @@ class Jogo {
     this.jogoAtivo = true;
     this.atualizarTabuleiro();
     document.querySelector('[data-mensagem-vitoria]').style.display = 'none';
-    this.setLabelJogadorAtual();
   }
 
   realizarJogada(jogada) {
@@ -72,13 +71,9 @@ class Jogo {
 
   alternarJogador() {
     this.jogadorAtual = this.jogadorAtual === this.jogador1 ? this.jogador2 : this.jogador1;
-    this.setLabelJogadorAtual();
   }
 
-  setLabelJogadorAtual() {
-    const placar = document.getElementById('placar');
-    placar.src = this.jogadorAtual.simbolo === 'X' ? 'img/Nick_1.png' : 'img/Nick_2.png';
-  }
+
 
   atualizarTabuleiro() {
     const tabuleiroDiv = document.getElementById("tabuleiro");
