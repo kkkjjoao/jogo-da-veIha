@@ -104,6 +104,29 @@ class Jogador {
   window.onload = () => {
     jogo.inicializarJogo();
   };
+window.onload = () => {
+   
+    const jogador1 = new Jogador("Alice", "X");
+    const jogador2 = new Jogador("Bob", "O");
+    jogo = new Jogo(jogador1, jogador2);
+    jogo.inicializarJogo();
+};
+
+const startButton = document.getElementById('startButton');
+startButton.addEventListener('click', function(event) {
+    if (!validarNomes()) {
+        event.preventDefault();
+    } else {
+       
+        const nomeJogador1 = document.getElementById('nomeJogador1').value.trim();
+        const nomeJogador2 = document.getElementById('nomeJogador2').value.trim();
+        const jogador1 = new Jogador(nomeJogador1, "X");
+        const jogador2 = new Jogador(nomeJogador2, "O");
+        jogo = new Jogo(jogador1, jogador2);
+        jogo.inicializarJogo();
+        window.location.href = 'telajogo.html';
+    }
+});
 
 botaosair.addEventListener('click', function() {
       confirmasair.style.display = 'block';
