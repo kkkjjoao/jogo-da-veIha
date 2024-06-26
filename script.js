@@ -1,52 +1,48 @@
-// Classe Jogador
 class Jogador {
-    constructor(nome, simbolo) {
-      this.nome = nome;
-      this.simbolo = simbolo;
-    }
+  constructor(nome, simbolo) {
+    this.nome = nome;
+    this.simbolo = simbolo;
+  }
+}
+
+class Jogada {
+  constructor(jogador, linha, coluna) {
+    this.jogador = jogador;
+    this.linha = linha;
+    this.coluna = coluna;
+  }
+}
+
+class Jogo {
+  constructor(jogador1, jogador2) {
+    this.tabuleiro = Array.from({ length: 3 }, () => Array(3).fill(' '));
+    this.jogador1 = jogador1;
+    this.jogador2 = jogador2;
+    this.jogadorAtual = jogador1;
+    this.jogoAtivo = true;
   }
 
-  // Classe Jogada
-  class Jogada {
-    constructor(jogador, linha, coluna) {
-      this.jogador = jogador;
-      this.linha = linha;
-      this.coluna = coluna;
-    }
+  inicializarJogo() {
+    this.tabuleiro = Array.from({ length: 3 }, () => Array(3).fill(' '));
+    this.jogadorAtual = this.jogador1;
+    this.jogoAtivo = true;
+    this.atualizarTabuleiro();
+    document.querySelector('[data-mensagem-vitoria]').style.display = 'none';
+    this.setLabelJogadorAtual();
   }
 
-  // Classe Jogo
-  class Jogo {
-    constructor(jogador1, jogador2) {
-      this.tabuleiro = Array.from({ length: 3 }, () => Array(3).fill(' '));
-      this.jogador1 = jogador1;
-      this.jogador2 = jogador2;
-      this.jogadorAtual = jogador1;
-      this.jogoAtivo = true;
-    }
-
-    inicializarJogo() {
-      this.tabuleiro = Array.from({ length: 3 }, () => Array(3).fill(' '));
-      this.jogadorAtual = this.jogador1;
-      this.jogoAtivo = true;
-      atualizarTabuleiro();
-      document.querySelector('[data-mensagem-vitoria]').style.display = 'none';
-    }
-
-    realizarJogada(jogada) {
+  realizarJogada(jogada) {
     if (this.tabuleiro[jogada.linha][jogada.coluna] === ' ' && this.jogoAtivo) {
       this.tabuleiro[jogada.linha][jogada.coluna] = jogada.jogador.simbolo;
-      atualizarTabuleiro();
+      this.atualizarTabuleiro();
       if (this.verificarVencedor()) {
         setTimeout(() => {
-          // alert(`O jogador ${jogada.jogador.nome} venceu!`);
           document.querySelector('[data-mensagem-texto]').innerText = `O jogador ${jogada.jogador.nome} venceu!`;
           document.querySelector('[data-mensagem-vitoria]').style.display = 'flex';
           this.jogoAtivo = false;
         }, 100);
       } else if (this.verificarEmpate()) {
         setTimeout(() => {
-          // alert("O jogo empatou!");
           document.querySelector('[data-mensagem-texto]').innerText = "O jogo empatou!";
           document.querySelector('[data-mensagem-vitoria]').style.display = 'flex';
           this.jogoAtivo = false;
@@ -59,86 +55,110 @@ class Jogador {
     }
   }
 
-    verificarVencedor() {
-      const simbolo = this.jogadorAtual.simbolo;
-      const linhas = this.tabuleiro.some(linha => linha.every(celula => celula === simbolo));
-      const colunas = [0, 1, 2].some(col => this.tabuleiro.every(linha => linha[col] === simbolo));
-      const diagonais =
-        [0, 1, 2].every(i => this.tabuleiro[i][i] === simbolo) ||
-        [0, 1, 2].every(i => this.tabuleiro[i][2 - i] === simbolo);
+  verificarVencedor() {
+    const simbolo = this.jogadorAtual.simbolo;
+    const linhas = this.tabuleiro.some(linha => linha.every(celula => celula === simbolo));
+    const colunas = [0, 1, 2].some(col => this.tabuleiro.every(linha => linha[col] === simbolo));
+    const diagonais =
+      [0, 1, 2].every(i => this.tabuleiro[i][i] === simbolo) ||
+      [0, 1, 2].every(i => this.tabuleiro[i][2 - i] === simbolo);
 
-      return linhas || colunas || diagonais;
-    }
+    return linhas || colunas || diagonais;
+  }
 
-       verificarEmpate() {
+  verificarEmpate() {
     return this.tabuleiro.every(linha => linha.every(celula => celula !== ' '));
   }
 
-    alternarJogador() {
-      this.jogadorAtual = this.jogadorAtual === this.jogador1 ? this.jogador2 : this.jogador1;
-    }
+  alternarJogador() {
+    this.jogadorAtual = this.jogadorAtual === this.jogador1 ? this.jogador2 : this.jogador1;
+    this.setLabelJogadorAtual();
   }
 
-  const jogador1 = new Jogador("Alice", "X");
-  const jogador2 = new Jogador("Bob", "O");
-  const jogo = new Jogo(jogador1, jogador2);
+  setLabelJogadorAtual() {
+    const placar = document.getElementById('placar');
+    placar.src = this.jogadorAtual.simbolo === 'X' ? 'img/Nick_1.png' : 'img/Nick_2.png';
+  }
 
-  function atualizarTabuleiro() {
+  atualizarTabuleiro() {
     const tabuleiroDiv = document.getElementById("tabuleiro");
     tabuleiroDiv.innerHTML = '';
-    jogo.tabuleiro.forEach((linha, i) => {
+    this.tabuleiro.forEach((linha, i) => {
       linha.forEach((celula, j) => {
         const celulaDiv = document.createElement("div");
         celulaDiv.className = "celula";
         celulaDiv.innerText = celula;
-        celulaDiv.onclick = () => jogo.realizarJogada(new Jogada(jogo.jogadorAtual, i, j));
+        celulaDiv.onclick = () => this.realizarJogada(new Jogada(this.jogadorAtual, i, j));
         tabuleiroDiv.appendChild(celulaDiv);
       });
     });
   }
+}
 
-  function reiniciarJogo() {
-    jogo.inicializarJogo();
-  }
+let jogo;
 
-  window.onload = () => {
-    jogo.inicializarJogo();
-  };
+function reiniciarJogo() {
+  jogo.inicializarJogo();
+}
+
 window.onload = () => {
-   
-    const jogador1 = new Jogador("Alice", "X");
-    const jogador2 = new Jogador("Bob", "O");
-    jogo = new Jogo(jogador1, jogador2);
-    jogo.inicializarJogo();
-};
+  const currentPage = window.location.pathname;
 
-const startButton = document.getElementById('startButton');
-startButton.addEventListener('click', function(event) {
-    if (!validarNomes()) {
+  if (currentPage.includes('index.html')) {
+    const startButton = document.getElementById('startButton');
+    startButton.addEventListener('click', function(event) {
+      if (!validarNomes()) {
         event.preventDefault();
-    } else {
-       
+      } else {
         const nomeJogador1 = document.getElementById('nomeJogador1').value.trim();
         const nomeJogador2 = document.getElementById('nomeJogador2').value.trim();
-        const jogador1 = new Jogador(nomeJogador1, "X");
-        const jogador2 = new Jogador(nomeJogador2, "O");
-        jogo = new Jogo(jogador1, jogador2);
-        jogo.inicializarJogo();
+        localStorage.setItem('nomeJogador1', nomeJogador1);
+        localStorage.setItem('nomeJogador2', nomeJogador2);
         window.location.href = 'telajogo.html';
-    }
-});
+      }
+    });
+  } else if (currentPage.includes('telajogo.html')) {
+    const nomeJogador1 = localStorage.getItem('nomeJogador1');
+    const nomeJogador2 = localStorage.getItem('nomeJogador2');
+    const jogador1 = new Jogador(nomeJogador1, "X");
+    const jogador2 = new Jogador(nomeJogador2, "O");
+    jogo = new Jogo(jogador1, jogador2);
+    jogo.inicializarJogo();
 
-botaosair.addEventListener('click', function() {
+    const botaosair = document.getElementById('botaosair');
+    const confirmasair = document.getElementById('confirmasair');
+    const btnconfirmasair = document.getElementById('btnconfirmasair');
+    const botaocancelar = document.getElementById('botaocancelar');
+
+    botaosair.addEventListener('click', function() {
       confirmasair.style.display = 'block';
-  });
+    });
 
-  btnconfirmasair.addEventListener('click', function() {
+    btnconfirmasair.addEventListener('click', function() {
       localStorage.clear();
       confirmasair.style.display = 'none';
       window.location.href = 'index.html';
-  });
+    });
 
-  botaocancelar.addEventListener('click', function() {
+    botaocancelar.addEventListener('click', function() {
       confirmasair.style.display = 'none';
-  });
+    });
+  }
+};
 
+function validarNomes() {
+  const nomeJogador1 = document.getElementById('nomeJogador1').value.trim();
+  const nomeJogador2 = document.getElementById('nomeJogador2').value.trim();
+
+  if (!nomeJogador1 || !nomeJogador2) {
+    alert("Por favor, preencha os nomes dos dois jogadores.");
+    return false;
+  }
+
+  if (nomeJogador1 === nomeJogador2) {
+    alert("Os nomes dos jogadores não podem ser iguais.");
+    return false;
+  }
+
+  return true;
+}
