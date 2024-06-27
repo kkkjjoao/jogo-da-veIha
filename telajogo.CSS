@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,11 +8,11 @@
 
 body {
     background-image: url(img/bgTelaJogo.png);
-    background-position: 0 0 ;
+    background-position: center;
     background-color: #5FF4FF;
     background-size: cover;
     background-attachment: fixed;
-
+    font-family: 'Press Start 2P', cursive;
 }
 
 .container-logo {
@@ -38,20 +40,21 @@ body {
     width: 30%;
 }
 
-
 #tabuleiro {
     display: grid;
     grid-template-columns: repeat(3, 100px);
     grid-gap: 5px;
     align-items: center;
     justify-content: center;
-  }
+    margin: 20px auto;
+}
 
 p {
-  font-size: 50px;
-  color: white;
+    font-size: 50px;
+    color: white;
 }
-  .celula {
+
+.celula {
     width: 100px;
     height: 100px;
     display: flex;
@@ -60,7 +63,7 @@ p {
     font-size: 24px;
     border: 1px solid black;
     cursor: pointer;
-  }
+}
 
 .celula:nth-child(1),
 .celula:nth-child(2),
@@ -86,7 +89,7 @@ p {
     border-bottom: none;
 }
 
-  .reiniciar {
+.reiniciar {
     display: flex;
     margin-left: auto;
     margin-right: auto;
@@ -164,27 +167,74 @@ p {
 #ranking {
     position: absolute;
     top: 32%;
-    right: 9%; 
-  }
-  
-  th, td {
+    right: 9%;
+}
+
+th, td {
     border: 3px solid #000;
     padding: 15px;
     text-align: center;
-  }
+}
 
-  #jogadores {
+#jogadores {
     position: absolute;
-    top: 65%; 
+    top: 65%;
     right: 13%;
-  }
+}
+
 .borda-piscando {
-  border: 2px solid red;
-  animation: piscar 1s infinite;
+    border: 2px solid red;
+    animation: piscar 1s infinite;
 }
 
 @keyframes piscar {
-  0% { border-color: red; }
-  50% { border-color: transparent; }
-  100% { border-color: red; }
+    0% { border-color: red; }
+    50% { border-color: transparent; }
+    100% { border-color: red; }
+}
+
+.veia {
+    margin-top: -7rem;
+    height: 18rem;
+    position: absolute;
+    right: 17%;
+    transform: scaleX(-1);
+}
+
+.coracao {
+    margin-top: -8rem;
+    height: 55px;
+    position: absolute;
+    right: 28%;
+}
+
+@media screen and (max-width: 1020px) {
+    #logo {
+        width: 40%;
+    }
+
+    #tabuleiro {
+        width: 90vw;
+        height: 90vw;
+    }
+
+    .seta-voltar {
+        top: 5px;
+        left: 5px;
+    }
+
+    .reiniciar {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+
+    #ranking, #jogadores {
+        position: static; /* Remove a posição absoluta */
+        margin: 20px auto; /* Centraliza no container */
+        width: 90%; /* Ajusta a largura para caber na tela */
+    }
 }
