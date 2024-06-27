@@ -178,3 +178,13 @@ p {
     top: 65%; 
     right: 13%;
   }
+.borda-piscando {
+  border: 2px solid red;
+  animation: piscar 1s infinite;
+}
+
+@keyframes piscar {
+  0% { border-color: red; }
+  50% { border-color: transparent; }
+  100% { border-color: red; }
+}
