@@ -32,7 +32,8 @@ class Jogo {
     this.jogoAtivo = true;
     this.atualizarTabuleiro();
     document.querySelector('[data-mensagem-vitoria]').style.display = 'none';
-    this.atualizarBordaJogadorAtual(); 
+    this.atualizarBordaJogadorAtual();
+    this.salvarEstadoJogo(); 
     atualizarRanking();
   }
 
