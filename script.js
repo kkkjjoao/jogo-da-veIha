@@ -148,6 +148,12 @@ window.onload = () => {
     jogo = new Jogo(jogador1, jogador2);
     jogo.inicializarJogo();
 
+    document.getElementById('rankingNomeJogador1').innerText = nomeJogador1;
+    document.getElementById('rankingNomeJogador2').innerText = nomeJogador2;
+
+    document.getElementById('nomeJogador1').innerText = nomeJogador1;
+    document.getElementById('nomeJogador2').innerText = nomeJogador2;
+    
     const botaosair = document.getElementById('botaosair');
     const confirmasair = document.getElementById('confirmasair');
     const btnconfirmasair = document.getElementById('btnconfirmasair');
