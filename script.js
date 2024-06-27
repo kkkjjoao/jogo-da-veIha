@@ -23,31 +23,20 @@ class Jogo {
     this.jogador2 = jogador2;
     this.jogadorAtual = jogador1;
     this.jogoAtivo = true;
-    this.atualizarBordaJogadorAtual();
+    this.atualizarBordaJogadorAtual();  
   }
-  atualizarBordaJogadorAtual() {
-    const nomeJogador1 = document.getElementById('nomeJogador1');
-    const nomeJogador2 = document.getElementById('nomeJogador2');
 
-    if (this.jogadorAtual === this.jogador1) {
-      nomeJogador1.classList.add('borda-piscando');
-      nomeJogador2.classList.remove('borda-piscando');
-    } else {
-      nomeJogador1.classList.remove('borda-piscando');
-      nomeJogador2.classList.add('borda-piscando');
-    }
-  }
   inicializarJogo() {
     this.tabuleiro = Array.from({ length: 3 }, () => Array(3).fill(' '));
     this.jogadorAtual = this.jogador1;
     this.jogoAtivo = true;
     this.atualizarTabuleiro();
     document.querySelector('[data-mensagem-vitoria]').style.display = 'none';
+    this.atualizarBordaJogadorAtual(); 
     atualizarRanking();
-    this.atualizarBordaJogadorAtual();
   }
 
- realizarJogada(jogada) {
+  realizarJogada(jogada) {
     if (this.tabuleiro[jogada.linha][jogada.coluna] === " " && this.jogoAtivo) {
       this.tabuleiro[jogada.linha][jogada.coluna] = jogada.jogador.simbolo;
       this.atualizarTabuleiro();
@@ -79,7 +68,6 @@ class Jogo {
     }
   }
 
-
   verificarVencedor() {
     const simbolo = this.jogadorAtual.simbolo;
     const linhas = this.tabuleiro.some(linha => linha.every(celula => celula === simbolo));
@@ -97,10 +85,21 @@ class Jogo {
 
   alternarJogador() {
     this.jogadorAtual = this.jogadorAtual === this.jogador1 ? this.jogador2 : this.jogador1;
-    this.atualizarBordaJogadorAtual();
+    this.atualizarBordaJogadorAtual();  
   }
 
+  atualizarBordaJogadorAtual() {
+    const nomeJogador1 = document.getElementById('nomeJogador1');
+    const nomeJogador2 = document.getElementById('nomeJogador2');
 
+    if (this.jogadorAtual === this.jogador1) {
+      nomeJogador1.classList.add('borda-piscando');
+      nomeJogador2.classList.remove('borda-piscando');
+    } else {
+      nomeJogador1.classList.remove('borda-piscando');
+      nomeJogador2.classList.add('borda-piscando');
+    }
+  }
 
   atualizarTabuleiro() {
     const tabuleiroDiv = document.getElementById("tabuleiro");
@@ -153,7 +152,7 @@ window.onload = () => {
 
     document.getElementById('nomeJogador1').innerText = nomeJogador1;
     document.getElementById('nomeJogador2').innerText = nomeJogador2;
-    
+
     const botaosair = document.getElementById('botaosair');
     const confirmasair = document.getElementById('confirmasair');
     const btnconfirmasair = document.getElementById('btnconfirmasair');
@@ -195,7 +194,7 @@ function validarNomes() {
 function atualizarRanking() {
   document.getElementById("vitoriasJogador1").innerText = jogo.jogador1.vitorias;
   document.getElementById("vitoriasJogador2").innerText = jogo.jogador2.vitorias;
-
+  
   document.getElementById("empatesJogador1").innerText = jogo.jogador1.empates;
   document.getElementById("empatesJogador2").innerText = jogo.jogador2.empates;
 
