@@ -178,6 +178,7 @@ window.onload = () => {
 
     document.getElementById('nomeJogador1').innerText = nomeJogador1;
     document.getElementById('nomeJogador2').innerText = nomeJogador2;
+    
     const setavoltar = document.getElementById('setavoltar');
     setavoltar.addEventListener('click', function() {
       localStorage.clear();
