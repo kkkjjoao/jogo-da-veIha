@@ -160,15 +160,30 @@ window.onload = () => {
     const nomeJogador2 = localStorage.getItem('nomeJogador2');
     const jogador1 = new Jogador(nomeJogador1, "X");
     const jogador2 = new Jogador(nomeJogador2, "O");
+
+    jogador1.vitorias = parseInt(localStorage.getItem('vitoriasJogador1')) || 0;
+    jogador1.derrotas = parseInt(localStorage.getItem('derrotasJogador1')) || 0;
+    jogador1.empates = parseInt(localStorage.getItem('empatesJogador1')) || 0;
+
+    jogador2.vitorias = parseInt(localStorage.getItem('vitoriasJogador2')) || 0;
+    jogador2.derrotas = parseInt(localStorage.getItem('derrotasJogador2')) || 0;
+    jogador2.empates = parseInt(localStorage.getItem('empatesJogador2')) || 0;
+
     jogo = new Jogo(jogador1, jogador2);
-    jogo.inicializarJogo();
+    jogo.atualizarTabuleiro();
+    atualizarRanking();
 
     document.getElementById('rankingNomeJogador1').innerText = nomeJogador1;
     document.getElementById('rankingNomeJogador2').innerText = nomeJogador2;
 
     document.getElementById('nomeJogador1').innerText = nomeJogador1;
     document.getElementById('nomeJogador2').innerText = nomeJogador2;
-    
+    const setavoltar = document.getElementById('setavoltar');
+    setavoltar.addEventListener('click', function() {
+      localStorage.clear();
+      window.location.href = 'index.html';
+    });
+
   }
 };
 
