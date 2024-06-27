@@ -18,12 +18,12 @@ class Jogada {
 
 class Jogo {
   constructor(jogador1, jogador2) {
-    this.tabuleiro = Array.from({ length: 3 }, () => Array(3).fill(' '));
+    this.tabuleiro = JSON.parse(localStorage.getItem('tabuleiro')) || Array.from({ length: 3 }, () => Array(3).fill(' '));
     this.jogador1 = jogador1;
     this.jogador2 = jogador2;
-    this.jogadorAtual = jogador1;
+    this.jogadorAtual = JSON.parse(localStorage.getItem('jogadorAtual')) || jogador1;
     this.jogoAtivo = true;
-    this.atualizarBordaJogadorAtual();  
+    this.atualizarBordaJogadorAtual();
   }
 
   inicializarJogo() {
