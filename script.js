@@ -41,7 +41,7 @@ class Jogo {
     if (this.tabuleiro[jogada.linha][jogada.coluna] === " " && this.jogoAtivo) {
       this.tabuleiro[jogada.linha][jogada.coluna] = jogada.jogador.simbolo;
       this.atualizarTabuleiro();
-      this.salvarEstadoJogo(); //localStorage
+      this.salvarEstadoJogo(); 
       if (this.verificarVencedor()) {
         setTimeout(() => {
           document.querySelector("[data-mensagem-texto]").innerText = `O jogador ${jogada.jogador.nome} venceu!`;
