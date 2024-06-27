@@ -115,6 +115,17 @@ class Jogo {
     });
   }
 }
+salvarEstadoJogo() {
+    localStorage.setItem('tabuleiro', JSON.stringify(this.tabuleiro));
+    localStorage.setItem('jogadorAtual', JSON.stringify(this.jogadorAtual));
+    localStorage.setItem('vitoriasJogador1', this.jogador1.vitorias);
+    localStorage.setItem('derrotasJogador1', this.jogador1.derrotas);
+    localStorage.setItem('empatesJogador1', this.jogador1.empates);
+    localStorage.setItem('vitoriasJogador2', this.jogador2.vitorias);
+    localStorage.setItem('derrotasJogador2', this.jogador2.derrotas);
+    localStorage.setItem('empatesJogador2', this.jogador2.empates);
+  }
+}
 
 let jogo;
 
