@@ -23,8 +23,20 @@ class Jogo {
     this.jogador2 = jogador2;
     this.jogadorAtual = jogador1;
     this.jogoAtivo = true;
+    this.atualizarBordaJogadorAtual();
   }
+  atualizarBordaJogadorAtual() {
+    const nomeJogador1 = document.getElementById('nomeJogador1');
+    const nomeJogador2 = document.getElementById('nomeJogador2');
 
+    if (this.jogadorAtual === this.jogador1) {
+      nomeJogador1.classList.add('borda-piscando');
+      nomeJogador2.classList.remove('borda-piscando');
+    } else {
+      nomeJogador1.classList.remove('borda-piscando');
+      nomeJogador2.classList.add('borda-piscando');
+    }
+  }
   inicializarJogo() {
     this.tabuleiro = Array.from({ length: 3 }, () => Array(3).fill(' '));
     this.jogadorAtual = this.jogador1;
@@ -32,6 +44,7 @@ class Jogo {
     this.atualizarTabuleiro();
     document.querySelector('[data-mensagem-vitoria]').style.display = 'none';
     atualizarRanking();
+    this.atualizarBordaJogadorAtual();
   }
 
  realizarJogada(jogada) {
@@ -84,6 +97,7 @@ class Jogo {
 
   alternarJogador() {
     this.jogadorAtual = this.jogadorAtual === this.jogador1 ? this.jogador2 : this.jogador1;
+    this.atualizarBordaJogadorAtual();
   }
 
 
@@ -173,15 +187,12 @@ function validarNomes() {
 }
 
 function atualizarRanking() {
-  // Atualizar vitórias
   document.getElementById("vitoriasJogador1").innerText = jogo.jogador1.vitorias;
   document.getElementById("vitoriasJogador2").innerText = jogo.jogador2.vitorias;
 
-  // Atualizar empates
   document.getElementById("empatesJogador1").innerText = jogo.jogador1.empates;
   document.getElementById("empatesJogador2").innerText = jogo.jogador2.empates;
 
-  // Atualizar derrotas
   document.getElementById("derrotasJogador1").innerText = jogo.jogador1.derrotas;
   document.getElementById("derrotasJogador2").innerText = jogo.jogador2.derrotas;
 }
