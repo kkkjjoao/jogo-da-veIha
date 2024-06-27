@@ -168,25 +168,7 @@ window.onload = () => {
 
     document.getElementById('nomeJogador1').innerText = nomeJogador1;
     document.getElementById('nomeJogador2').innerText = nomeJogador2;
-
-    const botaosair = document.getElementById('botaosair');
-    const confirmasair = document.getElementById('confirmasair');
-    const btnconfirmasair = document.getElementById('btnconfirmasair');
-    const botaocancelar = document.getElementById('botaocancelar');
-
-    botaosair.addEventListener('click', function() {
-      confirmasair.style.display = 'block';
-    });
-
-    btnconfirmasair.addEventListener('click', function() {
-      localStorage.clear();
-      confirmasair.style.display = 'none';
-      window.location.href = 'index.html';
-    });
-
-    botaocancelar.addEventListener('click', function() {
-      confirmasair.style.display = 'none';
-    });
+    
   }
 };
 
