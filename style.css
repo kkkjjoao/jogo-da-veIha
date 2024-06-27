@@ -1,14 +1,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
-body{
-    background-image: url(img/login.jpg);
-    background-size: 90%;
-    font-family: 'Press Start 2P', cursive;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+body {
+    background-image: url(img/login.jpg);
+    background-size: cover; 
+    background-position: center; 
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
 
+#tela1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.logo {
+    width: 20%;
+    margin-bottom: 20px;
+}
+.telaLogin {
+    width: 80%;
+    max-width: 400px;
+}
 
-.localInput{
+.localInput {
     width: 80vh;
     height: 40vh;
     margin: 20vh auto;
@@ -16,9 +40,10 @@ body{
     position: relative;
     background-image: url(img/bginput.png);
     background-size: 100%;
+    border-radius: 10px;
 }
 
-.localInput input{
+.localInput input {
     --input-focus: #2d8cf0;
     --font-color: #323232;
     --font-color-sub: #666;
@@ -40,29 +65,21 @@ body{
     font-family: 'Press Start 2P', cursive;
 }
 
-.localInput::placeholder{
-    color:var(--font-color-sub) ;
+.localInput::placeholder {
+    color: var(--font-color-sub);
     opacity: 0.8;
 }
-.localInput:focus{
+.localInput:focus {
     border: 2px solid var(--input-focus);
 }
 
-.localInput img{
+.localInput img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-.logo{
-    width: 20%;
-    height: auto;
-    position: relative;
-    left: 5%;
-    top: 5%;
-}
-
-.localInput button{
+.localInput button {
     border: none;
     background: none;
     padding: 0;
@@ -73,4 +90,18 @@ body{
     display: block;
     cursor: pointer;
     margin-left: 35%;
- }
+}
+
+@media (max-width: 1020px) {
+    .logo {
+        width: 40%;
+    }
+
+    .localInput input {
+        max-width: 300px;
+    }
+
+    .telaLogin {
+        width: 90%;
+    }
+}
