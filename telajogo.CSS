@@ -113,7 +113,7 @@ p {
 }
 
 .modal {
-    display: none; /* Esconder por padrão */
+    display: none; 
     position: fixed; 
     z-index: 1; 
     left: 0;
@@ -233,8 +233,8 @@ th, td {
     }
 
     #ranking, #jogadores {
-        position: static; /* Remove a posição absoluta */
-        margin: 20px auto; /* Centraliza no container */
-        width: 90%; /* Ajusta a largura para caber na tela */
+        position: static; 
+        margin: 20px auto; 
+        width: 90%; 
     }
 }
