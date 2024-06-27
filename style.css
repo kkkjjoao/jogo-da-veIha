@@ -32,12 +32,9 @@ body{
 }
 
 .localInput img{
-    width: 35%;
+    width: 100%;
     height: auto;
-    text-decoration: none;
-    position: relative;
-    top: 20px;
-    left: 33%;
+    display: block;
 }
 
 .logo{
@@ -47,3 +44,16 @@ body{
     left: 5%;
     top: 5%;
 }
+
+.localInput button{
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 20px 0;
+    width: 30%;
+    height: auto;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    margin-left: 35%;
+ }
