@@ -41,6 +41,7 @@ class Jogo {
     if (this.tabuleiro[jogada.linha][jogada.coluna] === " " && this.jogoAtivo) {
       this.tabuleiro[jogada.linha][jogada.coluna] = jogada.jogador.simbolo;
       this.atualizarTabuleiro();
+      this.salvarEstadoJogo(); //localStorage
       if (this.verificarVencedor()) {
         setTimeout(() => {
           document.querySelector("[data-mensagem-texto]").innerText = `O jogador ${jogada.jogador.nome} venceu!`;
@@ -49,6 +50,7 @@ class Jogo {
           this.alternarJogador();
           this.jogadorAtual.derrotas++;
           this.jogoAtivo = false;
+          this.salvarEstadoJogo();
           atualizarRanking();
         }, 100);
       } else if (this.verificarEmpate()) {
@@ -59,10 +61,12 @@ class Jogo {
           this.alternarJogador();
           this.jogadorAtual.empates++;
           this.jogoAtivo = false;
+          this.salvarEstadoJogo();
           atualizarRanking();
         }, 100);
       } else {
         this.alternarJogador();
+        this.salvarEstadoJogo();
       }
     } else {
       alert("Jogada inválida!");
@@ -86,7 +90,7 @@ class Jogo {
 
   alternarJogador() {
     this.jogadorAtual = this.jogadorAtual === this.jogador1 ? this.jogador2 : this.jogador1;
-    this.atualizarBordaJogadorAtual();  
+    this.atualizarBordaJogadorAtual();
   }
 
   atualizarBordaJogadorAtual() {
@@ -109,13 +113,13 @@ class Jogo {
       linha.forEach((celula, j) => {
         const celulaDiv = document.createElement("div");
         celulaDiv.className = "celula";
-        celulaDiv.innerText = celula; // Exibe o símbolo da célula
+        celulaDiv.innerText = celula;
         celulaDiv.onclick = () => this.realizarJogada(new Jogada(this.jogadorAtual, i, j));
         tabuleiroDiv.appendChild(celulaDiv);
       });
     });
   }
-}
+  
 salvarEstadoJogo() {
     localStorage.setItem('tabuleiro', JSON.stringify(this.tabuleiro));
     localStorage.setItem('jogadorAtual', JSON.stringify(this.jogadorAtual));
