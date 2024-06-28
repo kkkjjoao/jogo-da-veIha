@@ -22,3 +22,5 @@ João Victor da Silva dos Santos - RA:23166391-2
 Diagrama de Classes
 
 ![diagrama de classe](https://github.com/kkkjjoao/jogo-da-velha/assets/136550473/923b740f-df61-4499-8892-ba9cb0f76915)
+
+https://kkkjjoao.github.io/jogo-da-velha/index.html
