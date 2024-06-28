@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url(img/login.jpg);
+    background-size: cover; /* Ajusta a imagem para cobrir toda a área */
+    background-position: center; /* Centraliza a imagem */
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#tela1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.logo {
+    width: 20%;
+    margin-bottom: 20px;
+}
+.telaLogin {
+    width: 80%;
+    max-width: 400px;
+}
+
+.localInput {
+    width: 80vh;
+    height: 40vh;
+    margin: 20vh auto;
+    padding: 20px;
+    position: relative;
+    background-image: url(img/bginput.png);
+    background-size: 100%;
+    border-radius: 10px;
+}
+
+.localInput input {
+    --input-focus: #2d8cf0;
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: #fff;
+    --main-color: #323232;
+    width: 400px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+    margin-left: 11%;
+    margin-top: 20px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.localInput::placeholder {
+    color: var(--font-color-sub);
+    opacity: 0.8;
+}
+.localInput:focus {
+    border: 2px solid var(--input-focus);
+}
+
+.localInput img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.localInput button {
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 20px 0;
+    width: 30%;
+    height: auto;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    margin-left: 35%;
+}
+
+@media (max-width: 1020px) {
+    .logo {
+        width: 40%;
+    }
+
+    .localInput input {
+        max-width: 300px;
+    }
+
+    .telaLogin {
+        width: 90%;
+    }
+}

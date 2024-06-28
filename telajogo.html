@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="telajogo.CSS">
+    <title>Jogo da Velha</title>
+</head>
+<body>
+    <div class="seta-voltar" id="setavoltar" onclick="window.location.href='index.html'">
+        <img src="img/seta-voltar-pixel.png" alt="voltar">
+    </div>
+    <div class="container-logo">
+        <img id="logo" src="img/logo.png" alt="Logo">
+    </div>
+
+    <div class="container-logo2">
+        <img id="placar" src="img/Nick_1.png" alt="Placar">
+    </div>
+    
+    <div id="cardJogo">
+        <div id="tabuleiro"></div>
+    </div>
+
+    <div class="mensagem-vitoria" data-mensagem-vitoria>
+        <p data-mensagem-texto>X Venceu!</p>
+        <button class="reiniciar" onclick="reiniciarJogo()">Reiniciar Jogo</button>
+    </div>
+    
+    <div id="confirmasair" class="modal">
+        <div class="modal-content">
+            <p>Você realmente quer sair?</p>
+            <button id="btnconfirmasair">Sim</button>
+            <button id="botaocancelar">Não</button>
+        </div>
+    </div>
+
+    <div id="ranking">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th id="rankingNomeJogador1">Jogador 1</th>
+                    <th id="rankingNomeJogador2">Jogador 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Vitórias</td>
+                    <td id="vitoriasJogador1">0</td>
+                    <td id="vitoriasJogador2">0</td>
+                </tr>
+                <tr>
+                    <td>Empates</td>
+                    <td id="empatesJogador1">0</td>
+                    <td id="empatesJogador2">0</td>
+                </tr>
+                <tr>
+                    <td>Derrotas</td>
+                    <td id="derrotasJogador1">0</td>
+                    <td id="derrotasJogador2">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="jogadores">
+        <table>
+            <tbody>
+                <tr>
+                    <td id="nomeJogador1"></td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td id="nomeJogador2"></td>
+                    <td>O</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
